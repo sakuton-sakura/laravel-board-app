@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Http\Requests\CreatePostRequest;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -41,7 +43,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        return view('posts.show', ['post' => $post]);
+        $comments = Comment::where('post_id', $id)->get();
+        return view('posts.show', ['post' => $post,'comments' => $comments]);
     }
 
     public function edit($id)

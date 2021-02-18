@@ -32,3 +32,9 @@ Route::get('/board/{id}/edit','PostController@edit')->name('posts.edit');
 Route::put('/board/{id}/post','PostController@update')->name('posts.update');
 
 Route::delete('/board/{id}','PostController@delete')->name('posts.delete');
+
+Route::post('/board/{id}','CommentController@store')->name('comments.store');
+
+Route::get('/comment/{id}/edit','CommentController@edit')->name('comments.edit');
+
+Route::delete('/board/{id}/comments/{commentId}','CommentController@delete')->name('comments.delete');

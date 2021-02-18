@@ -10,7 +10,6 @@
             <th>タイトル</th>
             <th>本文</th>
             <th>ユーザー</th>
-            <th>コメント</th>
             <th></th>
             <th></th>
             <th></th>
@@ -18,8 +17,7 @@
                 <tr>
                     <td>{{$dat->title}}</td>
                     <td>{{$dat->body}}</td>
-                    <td>{{$dat->user_id}}</td>
-                    <td></td>
+                    <td>{{$dat->user['name']}}</td>
                     <td>
                         <a href="{{route('posts.show', $dat->id)}}" class="btn btn-info btn-sm" type="button">詳細</a>
                     </td>
