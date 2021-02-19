@@ -63,7 +63,7 @@
                     <div class="card-body  {{ $errors->has($comment->body) ? 'is-invalid' : '' }}">
                         {{ $comment->body }}
                         <div class="d-flex float-right">
-                            <a href="{{route('comments.edit',$comment->id)}}" class="btn btn-info btn-sm"
+                            <a href="{{route('comments.edit',[$comment->post_id,$comment->id])}}" class="btn btn-info btn-sm"
                                type="button">編集する</a>
                             <button type="submit" class="btn btn-danger btn-sm ml-2">削除</button>
                         </div>
