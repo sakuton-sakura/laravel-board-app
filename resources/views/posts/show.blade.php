@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlInput1">タイトル</label>
                     <input type="text" name="title" value="{{old('title')}}"
-                           class="form-control{{ $errors->has('title') ? 'is-invalid' : '' }}"
+                           class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
                            id="exampleFormControlInput1" placeholder="タイトル">
                     <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                 </div>
