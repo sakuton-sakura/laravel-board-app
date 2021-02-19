@@ -23,13 +23,16 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="exampleFormControlInput1">タイトル</label>
-                    <input type="text" name="title" value="{{ $comment->title }}"
-                           class="form-control" placeholder="タイトル">
+
+                    <input type="text" name="title" value="{{ old('title', $comment->title) }}"
+                           class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" placeholder="タイトル">
+                    <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">本文</label>
-                    <textarea name="body" class="form-control" rows="3"
-                              placeholder="本文">{{ $comment->body }}</textarea>
+                    <textarea name="body" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" rows="3"
+                              placeholder="本文">{{ old('body', $comment->body) }}</textarea>
+                    <div class="invalid-feedback">{{ $errors->first('body') }}</div>
                 </div>
                 <button class="btn btn-secondary btn-block" type="submit">コメントを編集する</button>
             </form>

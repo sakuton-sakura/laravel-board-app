@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Requests\CommentRequest;
+use App\Http\Requests\CommentUpdateRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class CommentController extends Controller
         return view('comments.edit', ['comment' => $comment,'post' => $post]);
     }
 
-    public function update(Request $request, $id, $commentId)
+    public function update(CommentUpdateRequest $request, $id, $commentId)
     {
         $post = Post::findOrFail($id);
         $comment = $post->comments()->findOrFail($commentId);
@@ -49,5 +50,4 @@ class CommentController extends Controller
         $comment->delete();
         return redirect()->back();
     }
-
 }
