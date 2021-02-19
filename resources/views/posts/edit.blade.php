@@ -23,6 +23,30 @@
             <button type="submit" class="btn btn-secondary btn-block">編集する</button>
         </form>
 
+        @foreach ($comments as $comment)
+            <form action="{{route('comments.delete',[$comment->post_id, $comment->id])}}" method="post">
+                @csrf
+                @method('DELETE')
+                <div class="card mt-2">
+
+                    <div class="card-header">
+                        <span class="title">{{ $comment->title }}</span>
+
+                        <span class="float-right">投稿者：{{$comment->user['name']}}</span>
+                        <span class="float-right mr-3">投稿日： {{$comment->created_at}}</span>
+                    </div>
+                    <div class="card-body  {{ $errors->has($comment->body) ? 'is-invalid' : '' }}">
+                        {{ $comment->body }}
+                        <div class="d-flex float-right">
+                            <a href="{{route('comments.edit',[$comment->post_id,$comment->id])}}" class="btn btn-info btn-sm"
+                               type="button">編集する</a>
+                            <button type="submit" class="btn btn-danger btn-sm ml-2">削除</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        @endforeach
+    </div>
 
     </div>
 @endsection

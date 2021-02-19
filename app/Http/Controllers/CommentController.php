@@ -25,10 +25,21 @@ class CommentController extends Controller
         return redirect('/board')->with('poststatus', '新規投稿しました');
     }
 
-    public function edit($id)
+    public function edit($id, $commentId)
     {
-        $comment = Comment::findOrFail($id);
-        return view('comments.edit', ['comment' => $comment]);
+        $post = Post::findOrFail($id);
+        $comment = Comment::findOrFail($commentId);
+        return view('comments.edit', ['comment' => $comment,'post' => $post]);
+    }
+
+    public function update(Request $request, $id, $commentId)
+    {
+        $post = Post::findOrFail($id);
+        $comment = $post->comments()->findOrFail($commentId);
+        $comment->title = $request->title;
+        $comment->body = $request->body;
+        $comment->save();
+        return redirect()->route('posts.index');
     }
 
     public function delete($id, $commentId)
@@ -38,4 +49,5 @@ class CommentController extends Controller
         $comment->delete();
         return redirect()->back();
     }
+
 }
